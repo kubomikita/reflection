@@ -81,7 +81,7 @@ class Method extends \ReflectionMethod
 	/**
 	 * @return ClassType
 	 */
-	public function getDeclaringClass()
+	#[\ReturnTypeWillChange] public function getDeclaringClass()
 	{
 		return new ClassType(parent::getDeclaringClass()->getName());
 	}
@@ -90,7 +90,7 @@ class Method extends \ReflectionMethod
 	/**
 	 * @return static
 	 */
-	public function getPrototype()
+	#[\ReturnTypeWillChange] public function getPrototype()
 	{
 		$prototype = parent::getPrototype();
 		return new static($prototype->getDeclaringClass()->getName(), $prototype->getName());
@@ -100,7 +100,7 @@ class Method extends \ReflectionMethod
 	/**
 	 * @return Extension
 	 */
-	public function getExtension()
+	#[\ReturnTypeWillChange] public function getExtension()
 	{
 		return ($name = $this->getExtensionName()) ? new Extension($name) : null;
 	}
@@ -109,7 +109,7 @@ class Method extends \ReflectionMethod
 	/**
 	 * @return Parameter[]
 	 */
-	public function getParameters()
+	#[\ReturnTypeWillChange] public function getParameters()
 	{
 		$me = [parent::getDeclaringClass()->getName(), $this->getName()];
 		foreach ($res = parent::getParameters() as $key => $val) {
